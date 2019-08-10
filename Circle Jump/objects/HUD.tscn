@@ -54,7 +54,7 @@ tracks/0/keys = {
 "values": [ true ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Message:custom_fonts/font:size")
+tracks/1/path = NodePath("Message:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -63,10 +63,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 64, 200 ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Message:modulate")
+tracks/2/path = NodePath("Message:rect_scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -75,7 +75,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ) ]
 }
 
 [sub_resource type="DynamicFontData" id=5]
@@ -128,13 +128,14 @@ anims/init = SubResource( 3 )
 anims/show_message = SubResource( 4 )
 
 [node name="Message" type="Label" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -28.0
-margin_right = 28.0
-grow_horizontal = 2
+modulate = Color( 1, 1, 1, 0 )
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -39.0
+margin_bottom = 39.0
 grow_vertical = 2
+rect_scale = Vector2( 2, 2 )
 custom_fonts/font = SubResource( 6 )
 text = "Message"
 align = 1

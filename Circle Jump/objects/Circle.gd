@@ -23,8 +23,6 @@ func init(_position, level = 1):
 	var move_chance = clamp(level-10, 0, 9) / 10.0
 	
 	var rand = randf()
-	print("rand:", str(rand))
-	print("move_chance:", str(move_chance))
 	
 	if randf() < move_chance:
 		move_range = max(25, 100 * rand_range(0.75, 1.25) * move_chance) * pow(-1 , randi() % 2)
@@ -33,21 +31,13 @@ func init(_position, level = 1):
 	if randf() < small_chance:
 		radius = max(50, radius - level * rand_range(0.75, 1.25))
 		
-#	move_range = 5
-#	move_speed= 0.20
-#	radius = 120
-	
-#	print("move_range:", str(move_range))
-#	print("move_speed:", str(move_speed))
-#	print("radius:", str(radius))
-	
 	$Sprite.material = $Sprite.material.duplicate()
 	$SpriteEffect.material = $Sprite.material
 	$CollisionShape2D.shape = $CollisionShape2D.shape.duplicate()
 	$CollisionShape2D.shape.radius = radius
 	var img_size = $Sprite.texture.get_size().x / 2
 	$Sprite.scale = Vector2.ONE * radius / img_size
-	orbit_position.position.x = radius + 25
+	orbit_position.position.x = radius - 10
 	rotation_speed *= pow(-1, randi() % 2)
 	set_tween()
 	

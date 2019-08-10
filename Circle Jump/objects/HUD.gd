@@ -1,5 +1,9 @@
 extends CanvasLayer
 
+func _ready():
+	$Message.rect_pivot_offset = $Message.rect_size / 2
+	pass
+
 func show_message(text):
     $Message.text = text
     $AnimationPlayer.play("show_message")
