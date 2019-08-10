@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="Circle Jump"
 run/main_scene="res://objects/Main.tscn"
+boot_splash/bg_color=Color( 0, 1, 0.109804, 0.27451 )
 config/icon="res://icon.png"
 
 [autoload]
@@ -37,4 +38,6 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 environment/default_environment="res://default_env.tres"
+quality/dynamic_fonts/use_oversampling=false

@@ -1,6 +1,7 @@
 extends Area2D
 
 onready var orbit_position = $Pivot/OrbitPosition
+onready var move_tween = $MoveTween
 
 enum MODES {STATIC, LIMITED}
 
@@ -11,11 +12,35 @@ var num_orbits = 3
 var current_orbits = 0
 var orbit_start = null
 var jumper = null
+var move_range = 0  # Distance the circle moves.
+var move_speed = 2.0  # The circle's movement speed.
 
-func init(_position, _radius = radius, _mode = MODES.LIMITED):
+
+func init(_position, level = 1):
+	var _mode = settings.random_weighted([10, level-1])
 	set_mode(_mode)
 	position = _position
-	radius = _radius
+	var move_chance = clamp(level-10, 0, 9) / 10.0
+	
+	var rand = randf()
+	print("rand:", str(rand))
+	print("move_chance:", str(move_chance))
+	
+	if randf() < move_chance:
+		move_range = max(25, 100 * rand_range(0.75, 1.25) * move_chance) * pow(-1 , randi() % 2)
+		move_speed = max(2.5 - ceil(level/5) * 0.25, 0.75)
+	var small_chance = min(0.9, max(0, (level-10) / 20.0))
+	if randf() < small_chance:
+		radius = max(50, radius - level * rand_range(0.75, 1.25))
+		
+#	move_range = 5
+#	move_speed= 0.20
+#	radius = 120
+	
+#	print("move_range:", str(move_range))
+#	print("move_speed:", str(move_speed))
+#	print("radius:", str(radius))
+	
 	$Sprite.material = $Sprite.material.duplicate()
 	$SpriteEffect.material = $Sprite.material
 	$CollisionShape2D.shape = $CollisionShape2D.shape.duplicate()
@@ -24,6 +49,7 @@ func init(_position, _radius = radius, _mode = MODES.LIMITED):
 	$Sprite.scale = Vector2.ONE * radius / img_size
 	orbit_position.position.x = radius + 25
 	rotation_speed *= pow(-1, randi() % 2)
+	set_tween()
 	
 func set_mode(_mode):
 	mode = _mode
@@ -85,3 +111,12 @@ func draw_circle_arc_poly(center, radius, angle_from, angle_to, color):
         var angle_point = angle_from + i * (angle_to - angle_from) / nb_points - PI/2
         points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * radius)
     draw_polygon(points_arc, colors)
+	
+func set_tween(object=null, key=null):
+	if move_range == 0:
+		return
+	move_range *= -1
+	move_tween.interpolate_property(self, "position:x", position.x, position.x + move_range, 
+									move_speed, Tween.TRANS_QUAD,Tween.EASE_IN_OUT)
+	move_tween.start()
+		
