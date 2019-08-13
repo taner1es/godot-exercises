@@ -45,3 +45,50 @@ static func random_weighted(weights):
 		if num < weights[i]:
 			return i
 		num -= weights[i]
+		
+		
+var admob = null
+var real_ads = false
+var banner_top = false
+var ad_banner_id = "ca-app-pub-3940256099942544/6300978111" #test admob id
+var ad_interstitial_id = "ca-app-pub-3940256099942544/1033173712" #test admob id
+var enable_ads = true setget set_enable_ads
+
+func _ready():
+	if Engine.has_singleton("AdMob"):
+		admob = Engine.get_singleton("AdMob")
+		admob.init(real_ads, get_instance_id())
+		admob.loadBanner(ad_banner_id, banner_top)
+		admob.loadInterstitial(ad_interstitial_id)
+	else:
+		print("no singleton")
+	
+		
+func show_ad_banner():
+	print("show banner")
+	if admob and enable_ads:
+		admob.showBanner()		
+		
+func hide_ad_banner():
+	print("hide banner")
+	if admob:
+		admob.hideBanner()
+		
+func show_ad_interstitial():
+	if admob and enable_ads:
+		admob.showInterstitial()
+		
+func _on_interstitial_close():
+	if admob and enable_ads:
+		show_ad_banner()
+
+func set_enable_ads(value):
+	enable_ads = value
+	if enable_ads:
+		show_ad_banner()
+	if !enable_ads:
+		hide_ad_banner()
+		
+		
+		
+		

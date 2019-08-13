@@ -14,6 +14,7 @@ func _ready():
 	$HUD.hide()
 	
 func new_game():
+	settings.hide_ad_banner()
 	self.score = 0
 	level = 1
 	$Camera2D.position = $StartPosition.position
@@ -52,6 +53,7 @@ func _on_Jumper_Died():
 	if settings.enable_music:
 		$Music.stop()
 	$HUD.hide()
+	settings.show_ad_interstitial()
 	
 func set_score(value):
 	score = value
