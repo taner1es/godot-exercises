@@ -2,16 +2,13 @@
 
 [ext_resource path="res://objects/HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/Xolonium.tres" type="DynamicFont" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 32
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 55
+[sub_resource type="DynamicFont" id=6]
+size = 28
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFontData" id=4]
@@ -21,97 +18,87 @@ font_path = "res://assets/fonts/Xolonium-Regular.ttf"
 size = 64
 font_data = SubResource( 4 )
 
-[sub_resource type="Animation" id=6]
-resource_name = "bonus"
+[sub_resource type="Animation" id=10]
+resource_name = "show_message"
 tracks/0/type = "value"
-tracks/0/path = NodePath("MarginContainer/Bonus:modulate")
+tracks/0/path = NodePath("Message:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Message:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "score"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("ScoreBox/HBoxContainer/Score:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.560784, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ScoreBox/HBoxContainer/Score:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "bonus"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("BonusBox/Bonus:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("MarginContainer/Bonus:rect_scale")
+tracks/1/path = NodePath("BonusBox/Bonus:rect_scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ), Vector2( 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=7]
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Message:custom_fonts/font:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 64 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Message:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=8]
-length = 0.8
-tracks/0/type = "value"
-tracks/0/path = NodePath("Message:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Message:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.8 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Message:rect_scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.8 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
 }
 
 [node name="HUD" type="CanvasLayer"]
@@ -137,21 +124,23 @@ margin_bottom = 59.0
 alignment = 2
 
 [node name="Label" type="Label" parent="ScoreBox/HBoxContainer"]
-margin_left = 318.0
-margin_right = 367.0
+margin_left = 347.0
+margin_right = 396.0
 margin_bottom = 39.0
 size_flags_vertical = 5
 custom_fonts/font = SubResource( 1 )
 text = "Score"
 
 [node name="Score" type="Label" parent="ScoreBox/HBoxContainer"]
-margin_left = 371.0
+modulate = Color( 1, 0.780392, 0.5, 1 )
+margin_left = 400.0
+margin_top = 2.0
 margin_right = 440.0
-margin_bottom = 39.0
-custom_fonts/font = SubResource( 2 )
-text = "100"
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 6 )
+text = "12"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="BonusBox" type="MarginContainer" parent="."]
 anchor_right = 1.0
 margin_bottom = 14.0
 custom_constants/margin_right = 20
@@ -159,13 +148,12 @@ custom_constants/margin_top = 5
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 5
 
-[node name="Bonus" type="Label" parent="MarginContainer"]
+[node name="Bonus" type="Label" parent="BonusBox"]
 margin_left = 20.0
-margin_top = 8.0
+margin_top = 5.0
 margin_right = 460.0
-margin_bottom = 75.0
-custom_fonts/font = SubResource( 3 )
-text = "1x"
+margin_bottom = 54.0
+custom_fonts/font = ExtResource( 3 )
 
 [node name="Message" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -181,8 +169,14 @@ text = "Message"
 align = 1
 valign = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "init"
-anims/bonus = SubResource( 6 )
-anims/init = SubResource( 7 )
-anims/show_message = SubResource( 8 )
+[node name="MessageAnimation" type="AnimationPlayer" parent="."]
+anims/show_message = SubResource( 10 )
+
+[node name="ScoreAnimation" type="AnimationPlayer" parent="."]
+anims/score = SubResource( 8 )
+
+[node name="BonusAnimation" type="AnimationPlayer" parent="."]
+anims/bonus = SubResource( 9 )
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="tween_step" from="Tween" to="." method="_on_Tween_tween_step"]
