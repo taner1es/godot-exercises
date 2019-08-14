@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://objects/HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
@@ -10,8 +10,45 @@ font_data = ExtResource( 2 )
 size = 32
 font_data = ExtResource( 2 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "init"
+[sub_resource type="DynamicFont" id=3]
+size = 55
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://assets/fonts/Xolonium-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 64
+font_data = SubResource( 4 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "bonus"
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer/Bonus:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MarginContainer/Bonus:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Message:custom_fonts/font:size")
@@ -38,8 +75,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "show_message"
+[sub_resource type="Animation" id=8]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("Message:visible")
@@ -78,13 +114,6 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 2, 2 ) ]
 }
 
-[sub_resource type="DynamicFontData" id=5]
-font_path = "res://assets/fonts/Xolonium-Regular.ttf"
-
-[sub_resource type="DynamicFont" id=6]
-size = 64
-font_data = SubResource( 5 )
-
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
 
@@ -122,10 +151,21 @@ margin_bottom = 39.0
 custom_fonts/font = SubResource( 2 )
 text = "100"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "init"
-anims/init = SubResource( 3 )
-anims/show_message = SubResource( 4 )
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 14.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 5
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 5
+
+[node name="Bonus" type="Label" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 8.0
+margin_right = 460.0
+margin_bottom = 75.0
+custom_fonts/font = SubResource( 3 )
+text = "1x"
 
 [node name="Message" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -136,7 +176,13 @@ margin_top = -39.0
 margin_bottom = 39.0
 grow_vertical = 2
 rect_scale = Vector2( 2, 2 )
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 5 )
 text = "Message"
 align = 1
 valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "init"
+anims/bonus = SubResource( 6 )
+anims/init = SubResource( 7 )
+anims/show_message = SubResource( 8 )
