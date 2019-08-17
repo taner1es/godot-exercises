@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://fonts/Some Time Later.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://scripts/button-title-playagain.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 200
+use_filter = true
+extra_spacing_space = 17
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 72
+font_data = ExtResource( 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.905882, 0.266667, 0.0980392, 1 )
+
+[node name="Label" type="Label" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 20.6776
+margin_top = -396.4
+margin_right = 20.6776
+margin_bottom = -70.4
+rect_rotation = 4.50819
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.0980392, 0.737255, 0.905882, 1 )
+custom_colors/font_color_shadow = Color( 0.133333, 0.231373, 0.862745, 1 )
+custom_constants/shadow_offset_x = 7
+custom_constants/shadow_offset_y = 3
+text = "Game Over!"
+align = 1
+valign = 1
+
+[node name="button-title-playagain" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -155.0
+margin_top = 60.0
+margin_right = 155.0
+margin_bottom = 41.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0980392, 0.905882, 0.262132, 1 )
+custom_colors/font_color_hover = Color( 0.0980392, 0.186397, 0.905882, 1 )
+custom_colors/font_color_pressed = Color( 0.905882, 0.874326, 0.0980392, 1 )
+text = "PLAY AGAIN"
+flat = true
+script = ExtResource( 2 )
+[connection signal="pressed" from="button-title-playagain" to="button-title-playagain" method="_on_buttontitleplayagain_pressed"]

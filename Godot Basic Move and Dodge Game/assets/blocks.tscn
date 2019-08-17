@@ -1,0 +1,48 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://imports/blockMaterial.tres" type="Material" id=1]
+[ext_resource path="res://textures/Bricks05_col.jpg" type="Texture" id=2]
+[ext_resource path="res://textures/Bricks05_nrm.jpg" type="Texture" id=3]
+[ext_resource path="res://textures/Bricks05_rgh.jpg" type="Texture" id=4]
+
+[sub_resource type="CubeMesh" id=1]
+material = ExtResource( 1 )
+
+[sub_resource type="BoxShape" id=2]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.054902, 1, 0, 1 )
+albedo_texture = ExtResource( 2 )
+roughness_texture = ExtResource( 4 )
+normal_enabled = true
+normal_scale = 4.65
+normal_texture = ExtResource( 3 )
+uv1_scale = Vector3( 0.7, 0.7, 1 )
+uv1_offset = Vector3( 1, 1, 0 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 5 )
+
+[sub_resource type="BoxShape" id=4]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="block1" type="MeshInstance" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="block1"]
+
+[node name="CollisionShape" type="CollisionShape" parent="block1/StaticBody"]
+shape = SubResource( 2 )
+
+[node name="block2" type="MeshInstance" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="block2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="block2/StaticBody"]
+shape = SubResource( 4 )
