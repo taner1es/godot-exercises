@@ -1,7 +1,8 @@
 extends Spatial
 
 func _ready():
-	$Panel.hide()
+	#$Panel.hide()
+	get_tree().get_root().get_child(0).get_node("Panel").hide()
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):

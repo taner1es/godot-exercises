@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Floor.tscn" type="PackedScene" id=2]
@@ -13,7 +13,11 @@
 
 [sub_resource type="BoxShape" id=1]
 
-[sub_resource type="Environment" id=2]
+[sub_resource type="ProceduralSky" id=2]
+
+[sub_resource type="Environment" id=3]
+background_mode = 2
+background_sky = SubResource( 2 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 0.5
 ambient_light_sky_contribution = 0.5
@@ -63,7 +67,7 @@ script = ExtResource( 8 )
 
 [node name="Camera" type="Camera" parent="Player"]
 transform = Transform( -1, 6.69697e-08, -5.61943e-08, 8.74228e-08, 0.766044, -0.642788, -3.82137e-15, -0.642788, -0.766044, 0, -7.1066, -12.9054 )
-environment = SubResource( 2 )
+environment = SubResource( 3 )
 current = true
 
 [node name="Box" parent="." instance=ExtResource( 9 )]

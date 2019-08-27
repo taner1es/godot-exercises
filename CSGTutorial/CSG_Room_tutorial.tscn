@@ -1,0 +1,156 @@
+[gd_scene format=2]
+
+[node name="Spatial" type="Spatial"]
+transform = Transform( 1.03751, 0, 0, 0, 1.03751, 0, 0, 0, 1.03751, 0, 0, 0 )
+
+[node name="room" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+invert_faces = true
+width = 10.0
+height = 10.0
+depth = 10.0
+
+[node name="desk" type="CSGCombiner" parent="room"]
+editor/display_folded = true
+transform = Transform( 0.70013, 0, 0, 0, 1, 0, 0, 0, 0.63944, -3.58893, -1.62238, 1.89111 )
+operation = 2
+
+[node name="surface" type="CSGBox" parent="room/desk"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.486641, 0 )
+invert_faces = true
+width = 4.0
+height = 0.3
+depth = 6.0
+
+[node name="leg1" type="CSGBox" parent="room/desk"]
+transform = Transform( 1, 0, 0, 0, 0.896437, 0, 0, 0, 1, -1.5, -2, 2.5 )
+invert_faces = true
+width = 0.3
+height = 3.0
+depth = 0.3
+
+[node name="leg2" type="CSGBox" parent="room/desk"]
+transform = Transform( 1, 0, 0, 0, 0.896437, 0, 0, 0, 1, 1.5, -2, 2.5 )
+invert_faces = true
+width = 0.3
+height = 3.0
+depth = 0.3
+
+[node name="leg3" type="CSGBox" parent="room/desk"]
+transform = Transform( 1, 0, 0, 0, 0.896437, 0, 0, 0, 1, 1.5, -2, -2.5 )
+invert_faces = true
+width = 0.3
+height = 3.0
+depth = 0.3
+
+[node name="leg4" type="CSGBox" parent="room/desk"]
+transform = Transform( 1, 0, 0, 0, 0.896437, 0, 0, 0, 1, -1.5, -2, -2.5 )
+invert_faces = true
+width = 0.3
+height = 3.0
+depth = 0.3
+
+[node name="bed" type="CSGCombiner" parent="room"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91589, -4.29681, -1.54395 )
+operation = 2
+
+[node name="bed" type="CSGBox" parent="room/bed"]
+invert_faces = true
+width = 3.59621
+height = 1.34997
+depth = 6.47436
+
+[node name="mattress" type="CSGBox" parent="room/bed"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.738638, 0 )
+invert_faces = true
+width = 3.00971
+height = 0.186989
+depth = 6.04361
+
+[node name="pillow" type="CSGCombiner" parent="room/bed"]
+editor/display_folded = true
+transform = Transform( 0.842316, 0, 0, 0, 1.16797, 0, 0, 0, 1, 0, 0.0360718, 0 )
+
+[node name="CSGSphere" type="CSGSphere" parent="room/bed/pillow"]
+transform = Transform( 1.09985, 0, 0, 0, 0.336077, 0, 0, 0, 0.832031, -0.979126, 0.762939, -2.28259 )
+invert_faces = true
+radius = 0.784698
+
+[node name="CSGSphere2" type="CSGSphere" parent="room/bed/pillow"]
+transform = Transform( 1.09985, 0, 0, 0, 0.336077, 0, 0, 0, 0.832031, 0.0379276, 0.762939, -2.28259 )
+invert_faces = true
+radius = 0.784698
+
+[node name="CSGSphere3" type="CSGSphere" parent="room/bed/pillow"]
+transform = Transform( 1.09985, 0, 0, 0, 0.336077, 0, 0, 0, 0.832031, 1.03193, 0.762939, -2.28259 )
+invert_faces = true
+radius = 0.784698
+
+[node name="lamp" type="CSGCombiner" parent="room"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.72162, -4.7019, -1.42773 )
+operation = 2
+
+[node name="CSGCylinder" type="CSGCylinder" parent="room/lamp"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41479, 0 )
+invert_faces = true
+radius = 0.087265
+height = 4.72149
+
+[node name="CSGCylinder2" type="CSGCylinder" parent="room/lamp"]
+invert_faces = true
+radius = 0.64636
+height = 0.49369
+cone = true
+
+[node name="CSGPolygon" type="CSGPolygon" parent="room/lamp"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.44012, 0 )
+invert_faces = true
+polygon = PoolVector2Array( 0.0288696, 0.240909, 0.0256958, 0.659366, 0.386692, 0.662417, 0.879089, -0.340024 )
+mode = 1
+spin_degrees = 360.0
+spin_sides = 8
+
+[node name="bookshelf" type="CSGCombiner" parent="room"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.548584, -0.980713, -1.44047, -3.93677 )
+operation = 2
+
+[node name="CSGBox" type="CSGBox" parent="room/bookshelf"]
+invert_faces = true
+width = 3.72556
+height = 7.09401
+depth = 3.51727
+
+[node name="CSGBox2" type="CSGBox" parent="room/bookshelf"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.10769, 0, 0, 0.215387 )
+operation = 2
+invert_faces = true
+width = 3.20405
+height = 6.53848
+depth = 3.13851
+
+[node name="CSGBox3" type="CSGBox" parent="room/bookshelf"]
+transform = Transform( 0.86152, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4881, 0 )
+invert_faces = true
+width = 3.72556
+height = 0.111715
+depth = 3.51727
+
+[node name="CSGBox4" type="CSGBox" parent="room/bookshelf"]
+transform = Transform( 0.86152, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.093811, 0 )
+invert_faces = true
+width = 3.72556
+height = 0.111715
+depth = 3.51727
+
+[node name="CSGBox5" type="CSGBox" parent="room/bookshelf"]
+transform = Transform( 0.86152, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.70715, 0 )
+invert_faces = true
+width = 3.72556
+height = 0.111715
+depth = 3.51727
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.800103, -0.0733098, 0.532404, -0.0724024, 0.931425, 0.23706, -0.532528, -0.236781, 0.767685, 8.53218, 7.85232, 11.2529 )
