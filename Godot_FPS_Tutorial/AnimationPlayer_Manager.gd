@@ -18,7 +18,7 @@ var states = {
 	
 	"Knife_equip": ["Knife_idle"],
 	"Knife_fire": ["Knife_idle"],
-	"Knife_idle": ["Knife,_fire", "Knife_unequip", "Knife_idle"],
+	"Knife_idle": ["Knife_fire", "Knife_unequip", "Knife_idle"],
 	"Knife_unequip": ["Idle_unarmed"],
 	}
 	

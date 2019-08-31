@@ -3907,6 +3907,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.493176, 0 )
 shape = SubResource( 2 )
 
 [node name="Rotation_Helper" type="Spatial" parent="."]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.239, 0 )
 
 [node name="Model" type="Spatial" parent="Rotation_Helper"]
