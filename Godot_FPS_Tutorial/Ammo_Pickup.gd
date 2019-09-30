@@ -10,6 +10,8 @@ var respawn_timer = 0
 
 var is_ready = false
 
+const GRENADE_AMOUNTS = [2, 0] #second element is 0 for the small ammo kit doesn't give grenade to player
+
 func _ready():
 	
 	$Holder/Ammo_Pickup_Trigger.connect("body_entered", self, "trigger_body_entered")
@@ -48,6 +50,11 @@ func kit_size_change_values(size, enable):
 func trigger_body_entered(body):
 	if body.has_method("add_ammo"):
 		body.add_ammo(AMMO_AMOUNTS[kit_size])
+		respawn_timer = RESPAWN_TIME
+		kit_size_change_values(kit_size, false)
+		
+	if body.has_method("add_grenade"):
+		body.add_grenade(GRENADE_AMOUNTS[kit_size])
 		respawn_timer = RESPAWN_TIME
 		kit_size_change_values(kit_size, false)
 	

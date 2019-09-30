@@ -14,7 +14,7 @@ const MAX_SLOPE_ANGLE = 40
 var camera
 var rotation_helper
 
-var MOUSE_SENSITIVITY = 0.05
+var MOUSE_SENSITIVITY = 0.08
 
 const MAX_SPRINT_SPEED = 30
 const SPRINT_ACCEL = 18
@@ -47,6 +47,12 @@ var mouse_scroll_value = 0
 const MOUSE_SENSITIVITY_SCROLL_WHEEL = 0.08
 
 const MAX_HEALTH = 150
+
+var grenade_amounts = {"Grenade":2, "Sticky Grenade":2}
+var current_grenade = "Grenade"
+var grenade_scene = preload("res://Grenade.tscn")
+var sticky_grenade_scene = preload("res://Sticky_Grenade.tscn")
+const GRENADE_THROW_FORCE = 50
 
 func _ready():
 	camera = $Rotation_Helper/Camera
@@ -84,6 +90,7 @@ func _physics_process(delta):
 	process_reloading(delta)
 	process_UI(delta)
 	
+# warning-ignore:unused_argument
 func process_reloading(delta):
 	if reloading_weapon == true:
 		var current_weapon = weapons[current_weapon_name]
@@ -91,13 +98,18 @@ func process_reloading(delta):
 			current_weapon.reload_weapon()
 		reloading_weapon = false
 
+# warning-ignore:unused_argument
 func process_UI(delta):
 	if current_weapon_name == "UNARMED" or current_weapon_name == "KNIFE":
-		UI_status_label.text = "HEALTH: " + str(health)
+		#First line: Health, second line: Grenades
+		UI_status_label.text = "HEALTH: " + str(health) + \
+				"\n" + current_grenade + ": " + str(grenade_amounts[current_grenade])
 	else:
 		var current_weapon = weapons[current_weapon_name]
+		#First line: Health, second line: weapon and ammo, third line: grenades
 		UI_status_label.text = "HEALTH: " + str(health) + \
-				"\nAMMO: " + str(current_weapon.ammo_in_weapon) + "/" + str(current_weapon.spare_ammo)
+				"\nAMMO: " + str(current_weapon.ammo_in_weapon) + "/" + str(current_weapon.spare_ammo) + \
+				"\n" + current_grenade + ": " + str(grenade_amounts[current_grenade])
 	
 func fire_bullet():
 	if changing_weapon == true:
@@ -106,6 +118,7 @@ func fire_bullet():
 	weapons[current_weapon_name].fire_weapon()
 	
 	
+# warning-ignore:unused_argument
 func process_changing_weapons(delta):
 	if changing_weapon == true:
 		
@@ -140,6 +153,7 @@ func process_changing_weapons(delta):
 				
 			
 	
+# warning-ignore:unused_argument
 func process_input(delta):
 	# -----------------------------
 	# Walking
@@ -259,7 +273,7 @@ func process_input(delta):
 							animation_manager.set_animation(current_weapon.FIRE_ANIM_NAME)
 					else:
 						reloading_weapon = true
-		# -----------------------------		
+	# -----------------------------		
 			
 	# -----------------------------		
 	# Reloading
@@ -280,6 +294,34 @@ func process_input(delta):
 							reloading_weapon = true
 	# -----------------------------		
 					
+					
+	# -----------------------------		
+	#Changing and throwing grenades
+	
+	if Input.is_action_just_pressed("change_grenade"):
+		if current_grenade == "Grenade":
+			current_grenade = "Sticky Grenade"
+		elif current_grenade == "Sticky Grenade":
+			current_grenade = "Grenade"
+			
+	if Input.is_action_just_pressed("fire_grenade"):
+		if grenade_amounts[current_grenade] > 0:
+			grenade_amounts[current_grenade] -= 1
+			
+			
+			var grenade_clone
+			if current_grenade == "Grenade":
+				grenade_clone = grenade_scene.instance()
+			elif current_grenade == "Sticky Grenade":
+				grenade_clone = sticky_grenade_scene.instance()
+				#Sticky grenades will stick to the player if we do not pass ourselves
+				grenade_clone.player_body = self
+				
+			get_tree().root.add_child(grenade_clone)
+			grenade_clone.global_transform = $Rotation_Helper/Grenade_Toss_Pos.global_transform
+			grenade_clone.apply_impulse(Vector3(0, 0, 0), grenade_clone.global_transform.basis.z * GRENADE_THROW_FORCE)
+	# -----------------------------	
+	
 func process_movement(delta):
 	dir.y = 0
 	dir = dir.normalized()
@@ -310,6 +352,7 @@ func process_movement(delta):
 	vel.z = hvel.z
 	vel = move_and_slide(vel, Vector3(0, 1, 0), 0.05, 4, deg2rad(MAX_SLOPE_ANGLE))
 	
+# warning-ignore:unused_argument
 func process_view_input(delta):
 	if Input.get_mouse_mode() != Input.MOUSE_MODE_CAPTURED:
 		return
@@ -387,7 +430,10 @@ func add_ammo(additional_ammo):
 	if current_weapon_name != "UNARMED":
 		if weapons[current_weapon_name].CAN_REFILL:
 			weapons[current_weapon_name].spare_ammo += weapons[current_weapon_name].AMMO_IN_MAG * additional_ammo
-	
+
+func add_grenade(additional_grenade):
+	grenade_amounts[current_grenade] += additional_grenade
+	grenade_amounts[current_grenade] = clamp(grenade_amounts[current_grenade], 0, 4)
 	
 	
 	
