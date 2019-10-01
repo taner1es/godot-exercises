@@ -29,9 +29,6 @@ func _ready():
 	
 	$Sticky_Area.connect("body_entered", self, "collided_with_body")
 	
-	
-	print("sticky grenade scene loaded")
-	
 func collided_with_body(body):
 	
 	if body == self:
