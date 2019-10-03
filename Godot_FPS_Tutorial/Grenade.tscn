@@ -65,13 +65,14 @@ transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
 shape = SubResource( 2 )
 
 [node name="Blast_Area" type="Area" parent="."]
+transform = Transform( 7, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0 )
 input_ray_pickable = false
 
 [node name="Collision_Shape" type="CollisionShape" parent="Blast_Area"]
 shape = SubResource( 3 )
 
 [node name="Explosion" type="Particles" parent="."]
-transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.0767642, 0 )
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -0.0767642, 0 )
 emitting = false
 amount = 128
 lifetime = 1.45

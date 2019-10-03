@@ -81,3 +81,7 @@ func unequip_weapon():
 		return true
 	else:
 		return false
+		
+func reset_weapon():
+	ammo_in_weapon = 10
+	spare_ammo = 20

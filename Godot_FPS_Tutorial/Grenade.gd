@@ -42,6 +42,7 @@ func _process(delta):
 					body.bullet_hit(GRENADE_DAMAGE, body.global_transform.looking_at(global_transform.origin, Vector3(0, 1, 0)))
 					
 			#This would be the perfect place to play a sound!
+			get_node("/root/Globals").play_sound("Grenade_explosion", false)
 			
 			
 		if explosion_wait_timer < EXPLOSION_WAIT_TIME:
