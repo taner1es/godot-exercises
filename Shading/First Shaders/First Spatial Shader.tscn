@@ -1,0 +1,111 @@
+[gd_scene load_steps=18 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+
+uniform sampler2D noise;
+
+
+void vertex() {
+	VERTEX.y += cos(VERTEX.x * 4.0) * sin(VERTEX.z * 4.0);
+}"
+
+[sub_resource type="OpenSimplexNoise" id=4]
+
+[sub_resource type="NoiseTexture" id=5]
+noise = SubResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/noise = SubResource( 5 )
+
+[sub_resource type="PlaneMesh" id=3]
+material = SubResource( 2 )
+subdivide_width = 32
+subdivide_depth = 32
+
+[sub_resource type="Shader" id=6]
+code = "shader_type spatial;
+
+uniform sampler2D noise;
+
+
+void vertex() {
+	float height = texture(noise, VERTEX.xz / 2.0).r;
+	VERTEX.y += height;
+}"
+
+[sub_resource type="OpenSimplexNoise" id=9]
+
+[sub_resource type="NoiseTexture" id=10]
+noise = SubResource( 9 )
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
+shader_param/noise = SubResource( 10 )
+
+[sub_resource type="PlaneMesh" id=8]
+material = SubResource( 7 )
+subdivide_width = 32
+subdivide_depth = 32
+
+[sub_resource type="Shader" id=11]
+code = "shader_type spatial;
+
+uniform sampler2D noise;
+uniform float height_scale = 0.5;
+uniform sampler2D normalmap;
+varying vec2 vertex_position;
+
+void vertex() {
+	float height = texture(noise, VERTEX.xz / 2.0).r;
+	VERTEX.y += height * height_scale;
+	vertex_position = VERTEX.xz / 2.0;
+}
+
+void fragment(){
+	NORMALMAP = texture(normalmap, vertex_position).xyz;
+}
+"
+
+[sub_resource type="OpenSimplexNoise" id=14]
+
+[sub_resource type="NoiseTexture" id=15]
+noise = SubResource( 14 )
+
+[sub_resource type="OpenSimplexNoise" id=16]
+
+[sub_resource type="NoiseTexture" id=17]
+as_normalmap = true
+noise = SubResource( 16 )
+
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 11 )
+shader_param/height_scale = 0.5
+shader_param/noise = SubResource( 15 )
+shader_param/normalmap = SubResource( 17 )
+
+[sub_resource type="PlaneMesh" id=13]
+material = SubResource( 12 )
+subdivide_width = 32
+subdivide_depth = 32
+
+[node name="First Spatial Shader" type="Spatial"]
+
+[node name="Terrain1" type="MeshInstance" parent="."]
+visible = false
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Terrain2" type="MeshInstance" parent="."]
+visible = false
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="Terrain3" type="MeshInstance" parent="."]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118654, 0.314283, 0.0367032 )
+light_energy = 1.4
