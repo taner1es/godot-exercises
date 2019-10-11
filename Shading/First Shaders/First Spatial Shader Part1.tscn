@@ -10,17 +10,17 @@ void vertex() {
 	VERTEX.y += cos(VERTEX.x * 4.0) * sin(VERTEX.z * 4.0);
 }"
 
-[sub_resource type="OpenSimplexNoise" id=4]
+[sub_resource type="OpenSimplexNoise" id=2]
 
-[sub_resource type="NoiseTexture" id=5]
-noise = SubResource( 4 )
+[sub_resource type="NoiseTexture" id=3]
+noise = SubResource( 2 )
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=4]
 shader = SubResource( 1 )
-shader_param/noise = SubResource( 5 )
+shader_param/noise = SubResource( 3 )
 
-[sub_resource type="PlaneMesh" id=3]
-material = SubResource( 2 )
+[sub_resource type="PlaneMesh" id=5]
+material = SubResource( 4 )
 subdivide_width = 32
 subdivide_depth = 32
 
@@ -35,17 +35,17 @@ void vertex() {
 	VERTEX.y += height;
 }"
 
-[sub_resource type="OpenSimplexNoise" id=9]
+[sub_resource type="OpenSimplexNoise" id=7]
 
-[sub_resource type="NoiseTexture" id=10]
-noise = SubResource( 9 )
+[sub_resource type="NoiseTexture" id=8]
+noise = SubResource( 7 )
 
-[sub_resource type="ShaderMaterial" id=7]
+[sub_resource type="ShaderMaterial" id=9]
 shader = SubResource( 6 )
-shader_param/noise = SubResource( 10 )
+shader_param/noise = SubResource( 8 )
 
-[sub_resource type="PlaneMesh" id=8]
-material = SubResource( 7 )
+[sub_resource type="PlaneMesh" id=10]
+material = SubResource( 9 )
 subdivide_width = 32
 subdivide_depth = 32
 
@@ -68,42 +68,42 @@ void fragment(){
 }
 "
 
+[sub_resource type="OpenSimplexNoise" id=12]
+
+[sub_resource type="NoiseTexture" id=13]
+noise = SubResource( 12 )
+
 [sub_resource type="OpenSimplexNoise" id=14]
 
 [sub_resource type="NoiseTexture" id=15]
+as_normalmap = true
 noise = SubResource( 14 )
 
-[sub_resource type="OpenSimplexNoise" id=16]
-
-[sub_resource type="NoiseTexture" id=17]
-as_normalmap = true
-noise = SubResource( 16 )
-
-[sub_resource type="ShaderMaterial" id=12]
+[sub_resource type="ShaderMaterial" id=16]
 shader = SubResource( 11 )
 shader_param/height_scale = 0.5
-shader_param/noise = SubResource( 15 )
-shader_param/normalmap = SubResource( 17 )
+shader_param/noise = SubResource( 13 )
+shader_param/normalmap = SubResource( 15 )
 
-[sub_resource type="PlaneMesh" id=13]
-material = SubResource( 12 )
+[sub_resource type="PlaneMesh" id=17]
+material = SubResource( 16 )
 subdivide_width = 32
 subdivide_depth = 32
 
-[node name="First Spatial Shader" type="Spatial"]
+[node name="First Spatial Shader Part1" type="Spatial"]
 
 [node name="Terrain1" type="MeshInstance" parent="."]
 visible = false
-mesh = SubResource( 3 )
+mesh = SubResource( 5 )
 material/0 = null
 
 [node name="Terrain2" type="MeshInstance" parent="."]
 visible = false
-mesh = SubResource( 8 )
+mesh = SubResource( 10 )
 material/0 = null
 
 [node name="Terrain3" type="MeshInstance" parent="."]
-mesh = SubResource( 13 )
+mesh = SubResource( 17 )
 material/0 = null
 
 [node name="OmniLight" type="OmniLight" parent="."]
