@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/water_diffuse.png-3ede8bfd2ec98dac9fff3c826128cf45.stex"
+path="res://.import/water_uv_offset.png-b8708deed528253526a65f9b989871f1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GDQuest Tutorials/water/textures/water_diffuse.png"
-dest_files=[ "res://.import/water_diffuse.png-3ede8bfd2ec98dac9fff3c826128cf45.stex" ]
+source_file="res://GDQuest Tutorials/textures/water_uv_offset.png"
+dest_files=[ "res://.import/water_uv_offset.png-b8708deed528253526a65f9b989871f1.stex" ]
 
 [params]
 

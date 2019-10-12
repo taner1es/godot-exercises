@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/water_normal.png-f4088b470f80d0b85d76e3b163044f9c.stex"
+path="res://.import/light.png-0fa87d845c466c61dff9be344206e1ef.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GDQuest Tutorials/water/textures/water_normal.png"
-dest_files=[ "res://.import/water_normal.png-f4088b470f80d0b85d76e3b163044f9c.stex" ]
+source_file="res://GDQuest Tutorials/textures/light.png"
+dest_files=[ "res://.import/light.png-0fa87d845c466c61dff9be344206e1ef.stex" ]
 
 [params]
 
@@ -18,8 +18,8 @@ compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=1
-flags/repeat=1
+compress/normal_map=0
+flags/repeat=0
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false

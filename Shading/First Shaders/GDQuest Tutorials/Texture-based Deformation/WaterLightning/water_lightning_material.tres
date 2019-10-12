@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://GDQuest Tutorials/Texture-based Deformation/WaterLightning/water_lightning.shader" type="Shader" id=1]
+[ext_resource path="res://GDQuest Tutorials/textures/water_diffuse.png" type="Texture" id=2]
+
+
+
+
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/tile_factor = Vector2( 5, 5 )
+shader_param/texture_uv = ExtResource( 2 )
