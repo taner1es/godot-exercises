@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GodotDocs Tutorials/Materials/First Spatial Shader 2/Water1.tres" type="Material" id=1]
+[ext_resource path="res://GodotDocs Tutorials/Materials/First Spatial Shader 2/Water2.tres" type="Material" id=2]
+
+[sub_resource type="PlaneMesh" id=7]
+material = ExtResource( 1 )
+subdivide_width = 32
+subdivide_depth = 32
+
+[sub_resource type="PlaneMesh" id=12]
+material = ExtResource( 2 )
+subdivide_width = 32
+subdivide_depth = 32
+
+[node name="First Spatial Shader Part2" type="Spatial"]
+
+[node name="Water1" type="MeshInstance" parent="."]
+visible = false
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="Water2" type="MeshInstance" parent="."]
+mesh = SubResource( 12 )
+material/0 = null
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24767, 0 )
+visible = false

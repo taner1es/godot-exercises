@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://GodotDocs Tutorials/Shaders/First Spatial Shader 2/Water2.shader" type="Shader" id=1]
+
+[sub_resource type="OpenSimplexNoise" id=9]
+
+[sub_resource type="NoiseTexture" id=10]
+noise = SubResource( 9 )
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/height_scale = 0.5
+shader_param/noise = SubResource( 10 )
