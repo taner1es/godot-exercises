@@ -1,92 +1,21 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=7 format=2]
 
-[sub_resource type="Shader" id=1]
-code = "shader_type spatial;
+[ext_resource path="res://GodotDocs Tutorials/Materials/First Spatial Shader 1/Terrain1.tres" type="Material" id=1]
+[ext_resource path="res://GodotDocs Tutorials/Materials/First Spatial Shader 1/Terrain2.tres" type="Material" id=2]
+[ext_resource path="res://GodotDocs Tutorials/Materials/First Spatial Shader 1/Terrain3.tres" type="Material" id=3]
 
-uniform sampler2D noise;
-
-
-void vertex() {
-	VERTEX.y += cos(VERTEX.x * 4.0) * sin(VERTEX.z * 4.0);
-}"
-
-[sub_resource type="OpenSimplexNoise" id=2]
-
-[sub_resource type="NoiseTexture" id=3]
-noise = SubResource( 2 )
-
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 1 )
-shader_param/noise = SubResource( 3 )
-
-[sub_resource type="PlaneMesh" id=5]
-material = SubResource( 4 )
+[sub_resource type="PlaneMesh" id=1]
+material = ExtResource( 1 )
 subdivide_width = 32
 subdivide_depth = 32
 
-[sub_resource type="Shader" id=6]
-code = "shader_type spatial;
-
-uniform sampler2D noise;
-
-
-void vertex() {
-	float height = texture(noise, VERTEX.xz / 2.0).r;
-	VERTEX.y += height;
-}"
-
-[sub_resource type="OpenSimplexNoise" id=7]
-
-[sub_resource type="NoiseTexture" id=8]
-noise = SubResource( 7 )
-
-[sub_resource type="ShaderMaterial" id=9]
-shader = SubResource( 6 )
-shader_param/noise = SubResource( 8 )
-
-[sub_resource type="PlaneMesh" id=10]
-material = SubResource( 9 )
+[sub_resource type="PlaneMesh" id=2]
+material = ExtResource( 2 )
 subdivide_width = 32
 subdivide_depth = 32
 
-[sub_resource type="Shader" id=11]
-code = "shader_type spatial;
-
-uniform sampler2D noise;
-uniform float height_scale = 0.5;
-uniform sampler2D normalmap;
-varying vec2 vertex_position;
-
-void vertex() {
-	float height = texture(noise, VERTEX.xz / 2.0).r;
-	VERTEX.y += height * height_scale;
-	vertex_position = VERTEX.xz / 2.0;
-}
-
-void fragment(){
-	NORMALMAP = texture(normalmap, vertex_position).xyz;
-}
-"
-
-[sub_resource type="OpenSimplexNoise" id=12]
-
-[sub_resource type="NoiseTexture" id=13]
-noise = SubResource( 12 )
-
-[sub_resource type="OpenSimplexNoise" id=14]
-
-[sub_resource type="NoiseTexture" id=15]
-as_normalmap = true
-noise = SubResource( 14 )
-
-[sub_resource type="ShaderMaterial" id=16]
-shader = SubResource( 11 )
-shader_param/height_scale = 0.5
-shader_param/noise = SubResource( 13 )
-shader_param/normalmap = SubResource( 15 )
-
-[sub_resource type="PlaneMesh" id=17]
-material = SubResource( 16 )
+[sub_resource type="PlaneMesh" id=3]
+material = ExtResource( 3 )
 subdivide_width = 32
 subdivide_depth = 32
 
@@ -94,16 +23,16 @@ subdivide_depth = 32
 
 [node name="Terrain1" type="MeshInstance" parent="."]
 visible = false
-mesh = SubResource( 5 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="Terrain2" type="MeshInstance" parent="."]
 visible = false
-mesh = SubResource( 10 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="Terrain3" type="MeshInstance" parent="."]
-mesh = SubResource( 17 )
+mesh = SubResource( 3 )
 material/0 = null
 
 [node name="OmniLight" type="OmniLight" parent="."]
