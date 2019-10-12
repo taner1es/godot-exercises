@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GDQuest Tutorials/first_shader/dancing_godot/dancing_godot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://GDQuest Tutorials/first_shader/dancing_godot/dancing_godot.gd" type="Script" id=2]
+[ext_resource path="res://GDQuest Tutorials/first_shader/interface/AmplitudeController.tscn" type="PackedScene" id=3]
+
+[node name="first_shader" type="Node"]
+
+[node name="dancing_godot" parent="." instance=ExtResource( 1 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -121.624
+margin_right = 32.0
+margin_bottom = -57.6237
+script = ExtResource( 2 )
+
+[node name="AmplitudeController" parent="." instance=ExtResource( 3 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.0
+margin_top = -20.0
+margin_right = 80.0
+margin_bottom = 20.0
+[connection signal="amplitude_changed" from="AmplitudeController" to="dancing_godot" method="_on_AmplitudeController_amplitude_changed"]
