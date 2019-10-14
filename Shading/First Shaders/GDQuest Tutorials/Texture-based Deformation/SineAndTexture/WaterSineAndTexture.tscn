@@ -5,5 +5,5 @@
 
 [node name="WaterSine" index="0" instance=ExtResource( 1 )]
 material = ExtResource( 2 )
-position = Vector2( 610.101, 336.542 )
-scale = Vector2( 4.76563, 2.61719 )
+position = Vector2( 453.463, 303.51 )
+scale = Vector2( 3.47392, 2.30255 )

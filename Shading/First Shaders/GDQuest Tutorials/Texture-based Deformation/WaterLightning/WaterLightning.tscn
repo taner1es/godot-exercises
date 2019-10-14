@@ -1,16 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://GDQuest Tutorials/Texture-based Deformation/WaterLightning/water_lightning_material.tres" type="Material" id=1]
 [ext_resource path="res://GDQuest Tutorials/textures/water_diffuse.png" type="Texture" id=2]
-[ext_resource path="res://GDQuest Tutorials/textures/light.png" type="Texture" id=3]
-
-
+[ext_resource path="res://GDQuest Tutorials/textures/water_normal.png" type="Texture" id=3]
+[ext_resource path="res://GDQuest Tutorials/textures/light.png" type="Texture" id=4]
 
 [node name="WaterLightning" type="Sprite"]
 material = ExtResource( 1 )
 position = Vector2( 770.964, 495.119 )
 scale = Vector2( 6.00753, 3.86812 )
 texture = ExtResource( 2 )
+normal_map = ExtResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="."]
-texture = ExtResource( 3 )
+material = ExtResource( 1 )
+position = Vector2( 22.1627, -8.90945 )
+scale = Vector2( 0.908119, 0.793302 )
+texture = ExtResource( 4 )
+energy = 2.0

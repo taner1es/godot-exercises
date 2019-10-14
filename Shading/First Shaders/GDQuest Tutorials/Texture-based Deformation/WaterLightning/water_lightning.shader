@@ -20,6 +20,5 @@ void fragment() {
 	adjusted_uv.y *= aspect_ratio;
 	
 	COLOR = texture(TEXTURE, adjusted_uv + texture_based_offset * wave_size);
-	NORMALMAP = texture(NORMAL_TEXTURE, UV + texture_based_offset * 0.02).rgb;
-//	COLOR = vec4(texture_based_offset, vec2(0.0, 1.0));
+	NORMALMAP = texture(NORMAL_TEXTURE, UV +  texture_based_offset * 0.01).rgb;
 }
