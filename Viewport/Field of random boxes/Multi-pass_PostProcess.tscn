@@ -1,0 +1,123 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+//Gaussian-Blur, Blurs the screen in the Y-direction.
+
+void fragment() {
+    vec3 col = texture(TEXTURE, SCREEN_UV).xyz * 0.16;
+    col += texture(TEXTURE, SCREEN_UV + vec2(0.0, SCREEN_PIXEL_SIZE.y)).xyz * 0.15;
+    col += texture(TEXTURE, SCREEN_UV + vec2(0.0, -SCREEN_PIXEL_SIZE.y)).xyz * 0.15;
+    col += texture(TEXTURE, SCREEN_UV + vec2(0.0, 2.0 * SCREEN_PIXEL_SIZE.y)).xyz * 0.12;
+    col += texture(TEXTURE, SCREEN_UV + vec2(0.0, 2.0 * -SCREEN_PIXEL_SIZE.y)).xyz * 0.12;
+    col += texture(TEXTURE, SCREEN_UV + vec2(0.0, 3.0 * SCREEN_PIXEL_SIZE.y)).xyz * 0.09;
+    col += texture(TEXTURE, SCREEN_UV + vec2(0.0, 3.0 * -SCREEN_PIXEL_SIZE.y)).xyz * 0.09;
+    col += texture(TEXTURE, SCREEN_UV + vec2(0.0, 4.0 * SCREEN_PIXEL_SIZE.y)).xyz * 0.05;
+    col += texture(TEXTURE, SCREEN_UV + vec2(0.0, 4.0 * -SCREEN_PIXEL_SIZE.y)).xyz * 0.05;
+    COLOR.xyz = col;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+//Gaussian-Blur, Blurs the screen in the X-direction.
+
+void fragment() {
+    vec3 col = texture(TEXTURE, SCREEN_UV).xyz * 0.16;
+    col += texture(TEXTURE, SCREEN_UV + vec2(SCREEN_PIXEL_SIZE.x, 0.0)).xyz * 0.15;
+    col += texture(TEXTURE, SCREEN_UV + vec2(-SCREEN_PIXEL_SIZE.x, 0.0)).xyz * 0.15;
+    col += texture(TEXTURE, SCREEN_UV + vec2(2.0 * SCREEN_PIXEL_SIZE.x, 0.0)).xyz * 0.12;
+    col += texture(TEXTURE, SCREEN_UV + vec2(2.0 * -SCREEN_PIXEL_SIZE.x, 0.0)).xyz * 0.12;
+    col += texture(TEXTURE, SCREEN_UV + vec2(3.0 * SCREEN_PIXEL_SIZE.x, 0.0)).xyz * 0.09;
+    col += texture(TEXTURE, SCREEN_UV + vec2(3.0 * -SCREEN_PIXEL_SIZE.x, 0.0)).xyz * 0.09;
+    col += texture(TEXTURE, SCREEN_UV + vec2(4.0 * SCREEN_PIXEL_SIZE.x, 0.0)).xyz * 0.05;
+    col += texture(TEXTURE, SCREEN_UV + vec2(4.0 * -SCREEN_PIXEL_SIZE.x, 0.0)).xyz * 0.05;
+    COLOR.xyz = col;
+}
+"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+
+[sub_resource type="CubeMesh" id=5]
+
+[node name="Main MultiPass" type="Node2D"]
+
+[node name="Secondary Post Process" type="ViewportContainer" parent="."]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="Viewport" type="Viewport" parent="Secondary Post Process"]
+size = Vector2( 1024, 600 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="First Post Process" type="ViewportContainer" parent="Secondary Post Process/Viewport"]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1024.0
+margin_bottom = -600.0
+
+[node name="Viewport" type="Viewport" parent="Secondary Post Process/Viewport/First Post Process"]
+size = Vector2( 1024, 600 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="MeshInstance" type="MeshInstance" parent="Secondary Post Process/Viewport/First Post Process/Viewport"]
+transform = Transform( 0.453295, 0.749876, 0.481882, 0.0641092, 0.511786, -0.856718, -0.889052, 0.419239, 0.183916, -10, 0, -10 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="MeshInstance6" type="MeshInstance" parent="Secondary Post Process/Viewport/First Post Process/Viewport"]
+transform = Transform( 0.453295, 0.749876, 0.481882, 0.0641092, 0.511786, -0.856718, -0.889052, 0.419239, 0.183916, -10, 0, 0 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="MeshInstance8" type="MeshInstance" parent="Secondary Post Process/Viewport/First Post Process/Viewport"]
+transform = Transform( 0.453295, 0.749876, 0.481882, 0.0641092, 0.511786, -0.856718, -0.889052, 0.419239, 0.183916, -10, 0, 10 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="Secondary Post Process/Viewport/First Post Process/Viewport"]
+transform = Transform( 0.453295, 0.749876, 0.481882, 0.0641092, 0.511786, -0.856718, -0.889052, 0.419239, 0.183916, 0, 0, -10 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="MeshInstance4" type="MeshInstance" parent="Secondary Post Process/Viewport/First Post Process/Viewport"]
+transform = Transform( 0.453295, 0.749876, 0.481882, 0.0641092, 0.511786, -0.856718, -0.889052, 0.419239, 0.183916, 0, 0, 0 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="MeshInstance9" type="MeshInstance" parent="Secondary Post Process/Viewport/First Post Process/Viewport"]
+transform = Transform( 0.453295, 0.749876, 0.481882, 0.0641092, 0.511786, -0.856718, -0.889052, 0.419239, 0.183916, 0, 0, 10 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="MeshInstance3" type="MeshInstance" parent="Secondary Post Process/Viewport/First Post Process/Viewport"]
+transform = Transform( 0.453295, 0.749876, 0.481882, 0.0641092, 0.511786, -0.856718, -0.889052, 0.419239, 0.183916, 10, 0, -10 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="MeshInstance5" type="MeshInstance" parent="Secondary Post Process/Viewport/First Post Process/Viewport"]
+transform = Transform( 0.453295, 0.749876, 0.481882, 0.0641092, 0.511786, -0.856718, -0.889052, 0.419239, 0.183916, 10, 0, 0 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="MeshInstance7" type="MeshInstance" parent="Secondary Post Process/Viewport/First Post Process/Viewport"]
+transform = Transform( 0.453295, 0.749876, 0.481882, 0.0641092, 0.511786, -0.856718, -0.889052, 0.419239, 0.183916, 10, 0, 10 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="Camera" type="Camera" parent="Secondary Post Process/Viewport/First Post Process/Viewport"]
+transform = Transform( 0.9331, 0.151641, -0.326083, -0.0157721, 0.923132, 0.384159, 0.359272, -0.353316, 0.863766, -8.35893, 5.67651, 23.1921 )
+current = true
