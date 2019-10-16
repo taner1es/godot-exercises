@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://procedural_planet_texture.tres" type="Material" id=1]
+
+[sub_resource type="ViewportTexture" id=6]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ViewportTexture" id=7]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="SpatialMaterial" id=4]
+resource_local_to_scene = true
+albedo_texture = SubResource( 6 )
+metallic_specular = 1.0
+roughness_texture = SubResource( 7 )
+roughness_texture_channel = 3
+
+[sub_resource type="SphereMesh" id=5]
+
+[node name="Procedural planet generating" type="Spatial"]
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1024, 512 )
+transparent_bg = true
+hdr = false
+disable_3d = true
+
+[node name="ColorRect" type="ColorRect" parent="Viewport"]
+material = ExtResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+material_override = SubResource( 4 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="OmniLight" type="OmniLight" parent="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2552, 1.3808, 1.7243 )
