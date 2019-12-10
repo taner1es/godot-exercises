@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://FullScreenShader.material" type="Material" id=1]
+
+[sub_resource type="QuadMesh" id=1]
+material = ExtResource( 1 )
+size = Vector2( 2, 2 )
+
+[node name="MeshInstance" type="Node"]
+
+[node name="Camera" type="Camera" parent="."]
+current = true
+
+[node name="MeshInstance" type="MeshInstance" parent="Camera"]
+extra_cull_margin = 16382.0
+mesh = SubResource( 1 )
+material/0 = null
