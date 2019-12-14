@@ -60,5 +60,5 @@ void fragment() {
 	float alb_y = clamp(1.0 / instance_custom.y, 0.3, 0.8);
 	float alb_z = clamp(1.0 / instance_custom.z, 0.3, 0.8);
     
-	ALBEDO = vec3(alb_x, alb_y, alb_z); // use red for material albedo
+	//ALBEDO = vec3(alb_x, alb_y, alb_z); // use red for material albedo
 }

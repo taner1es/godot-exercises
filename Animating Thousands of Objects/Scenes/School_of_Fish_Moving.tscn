@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/vertex_animation_static_mesh.material" type="Material" id=1]
+[ext_resource path="res://Assets/partical_shader_move_randomly.shader" type="Shader" id=2]
+[ext_resource path="res://Assets/Fish.mesh" type="ArrayMesh" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Particles" type="Particles" parent="."]
+material_override = ExtResource( 1 )
+amount = 100
+lifetime = 24.1
+visibility_aabb = AABB( -4, -2.35077, -7.167, 8, 4.70154, 14.334 )
+process_material = SubResource( 1 )
+draw_pass_1 = ExtResource( 3 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.30719, 0.432795, -0.847539, 0.0368262, 0.884528, 0.465031, 0.950936, -0.174064, 0.25578, -39.3448, 20.6497, 93.5104 )
