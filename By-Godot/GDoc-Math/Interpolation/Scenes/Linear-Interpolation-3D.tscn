@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/linear_interpolation.gd" type="Script" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+
+[node name="Node" type="Node"]
+script = ExtResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="A" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.52248, -3.87241, -4.76837e-007 )
+
+[node name="B" type="Position3D" parent="."]
+transform = Transform( 0.649399, 0, -0.760448, 0, 1, 0, 0.760448, 0, 0.649399, 6.46946, 4.02011, 0 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.13538 )
+current = true
