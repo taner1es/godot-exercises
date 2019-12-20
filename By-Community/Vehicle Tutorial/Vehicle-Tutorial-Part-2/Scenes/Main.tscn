@@ -1,0 +1,100 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Textures/floor_tiles_08_diff_1k.jpg" type="Texture" id=1]
+[ext_resource path="res://Scenes/Car.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Textures/road_texture.jpg" type="Texture" id=4]
+
+[sub_resource type="PlaneShape" id=1]
+
+[sub_resource type="PlaneMesh" id=2]
+size = Vector2( 1000, 1000 )
+subdivide_width = 10
+subdivide_depth = 10
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_texture = ExtResource( 1 )
+uv1_scale = Vector3( 50, 50, 0 )
+
+[sub_resource type="Curve3D" id=4]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 79.7467, 0.155884, -71.6471, -182.963, 40.4227, -128.396, -42.3402, -0.0954285, 43.8931, 42.3402, 0.0954285, -43.8931, -28.4039, 81.8127, -151.509, -68.2458, 0.00814819, -16.2771, 68.2458, -0.00814819, 16.2771, 305.004, 42.3012, -144.058, -25.0165, 0.150391, -86.5781, 25.0165, -0.150391, 86.5781, 433.342, 2.70805, -27.2313, 79.8873, -0.013916, -4.61029, -79.8873, 0.013916, 4.61029, 405.146, 4.57373, 362.792, 72.3125, 0.0789795, -40.9441, -72.3125, -0.0789795, 40.9441, 290.986, 15.8036, 135.034, 82.5636, -0.0180054, 3.5495, -82.5636, 0.0180054, -3.5495, 246.885, 35.9077, 443.62, 100.868, -42.5943, 12.6366, -100.868, 42.5943, -12.6366, 133.111, 92.7045, 242.588, 56.8966, -0.0317383, 11.2049, -56.8966, 0.0317383, -11.2049, -252.558, 0, 398.915, -23.3159, -0.141602, 63.6302, 23.3159, 0.141602, -63.6302, -314.251, 5.06049, 242.084, -37.2622, -0.745331, 30.6326, 37.2622, 0.745331, -30.6326, -68.7439, 5.79062, 166.182, -23.5135, -0.0965576, 44.4843, 23.5135, 0.0965576, -44.4843, 193.744, 18.3536, 44.4731, 62.1355, -0.00708008, 1.22408, -62.1355, 0.00708008, -1.22408, 93.3734, 41.1309, -58.2737, 25.2523, 0.586895, 14.3049, -25.2523, -0.586895, -14.3049, -111.878, 61.8177, -8.69305, -75.1712, 7.81543, 70.0842, 75.1712, -7.81543, -70.0842, -182.963, 40.4227, -128.396 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="Shader" id=5]
+code = "shader_type spatial;
+
+uniform sampler2D road_texture;
+
+void fragment(){
+	vec2 road_uv = vec2(UV.y, UV.x);
+	
+	vec4 color = texture(road_texture, road_uv);
+	ALBEDO = color.rgb;
+	METALLIC = 0.0;
+	ROUGHNESS = 0.8;
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/road_texture = ExtResource( 4 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Ground" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground"]
+transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Ground"]
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform( 0.780688, 0.420676, -0.462123, 0, 0.739491, 0.673167, 0.624921, -0.525533, 0.577312, 0, 39.6048, 0 )
+shadow_enabled = true
+
+[node name="Car" type="Spatial" parent="."]
+
+[node name="Car" parent="Car" instance=ExtResource( 2 )]
+transform = Transform( -0.0725917, 0, 0.997362, 0, 1, 0, -0.997362, 0, -0.0725917, 51.9693, 43.5493, -52.3581 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.996195, 0, -0.0871559, 0, 1, 0, 0.0871559, 0, -0.996195, 0, 6.76983, -16.2975 )
+current = true
+far = 1000.0
+script = ExtResource( 3 )
+follow_this_path = NodePath("../Car/Car")
+
+[node name="Track" type="Spatial" parent="."]
+
+[node name="Path" type="Path" parent="Track"]
+curve = SubResource( 4 )
+
+[node name="Road" type="CSGPolygon" parent="Track/Path"]
+invert_faces = true
+polygon = PoolVector2Array( 5, -1, 5, 0, -5, 0, -5, -1 )
+mode = 2
+path_node = NodePath("..")
+path_interval = 1.0
+path_rotation = 2
+path_local = false
+path_continuous_u = false
+path_joined = true
+smooth_faces = true
+material = SubResource( 6 )
+
+[node name="CollisionShape" type="CSGPolygon" parent="Track/Path"]
+visible = false
+use_collision = true
+invert_faces = true
+polygon = PoolVector2Array( -7, 5, -5, 5, -5, 0, 5, 0, 5, 5, 7, 5, 7, -1, -7, -1 )
+mode = 2
+path_node = NodePath("..")
+path_interval = 1.0
+path_rotation = 2
+path_local = false
+path_continuous_u = false
+path_joined = true
