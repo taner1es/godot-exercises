@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Materials/terrain.tres" type="Material" id=1]
+[ext_resource path="res://Scenes/Car.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/track-base.tscn" type="PackedScene" id=4]
+
+[sub_resource type="PlaneShape" id=1]
+
+[sub_resource type="PlaneMesh" id=2]
+material = ExtResource( 1 )
+size = Vector2( 1000, 1000 )
+subdivide_width = 10
+subdivide_depth = 10
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Ground" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground"]
+transform = Transform( 50, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Ground"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform( 0.780688, 0.420676, -0.462123, 0, 0.739491, 0.673167, 0.624921, -0.525533, 0.577312, 0, 39.6048, 0 )
+shadow_enabled = true
+
+[node name="Car" type="Spatial" parent="."]
+
+[node name="Car" parent="Car" instance=ExtResource( 2 )]
+transform = Transform( -0.209128, 0, 0.977889, 0, 1, 0, -0.977889, 0, -0.209128, 51.9693, 43.7861, -52.7685 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.996195, 0, -0.0871559, 0, 1, 0, 0.0871559, 0, -0.996195, 0, 6.76983, -16.2975 )
+current = true
+far = 1000.0
+script = ExtResource( 3 )
+follow_this_path = NodePath("../Car/Car")
+
+[node name="Track" type="Spatial" parent="."]
+
+[node name="Path" parent="Track" instance=ExtResource( 4 )]
+track_width = 6.0
+post_distance = 10.0
