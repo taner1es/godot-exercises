@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Maps/Terrain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Tanks/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Tanks/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -45,6 +46,9 @@ position = Vector2( 2913.83, 593.301 )
 rotation = 2.24182
 
 [node name="Enemy" parent="Paths/Path2D2/PathFollow2D" instance=ExtResource( 4 )]
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+[connection signal="health_changed" from="Player" to="HUD" method="update_healtbar"]
 [connection signal="shoot" from="Player" to="." method="_on_Tank_shoot"]
 [connection signal="shoot" from="Paths/Path2D/PathFollow2D/Enemy" to="." method="_on_Tank_shoot"]
 [connection signal="shoot" from="Paths/Path2D2/PathFollow2D/Enemy" to="." method="_on_Tank_shoot"]

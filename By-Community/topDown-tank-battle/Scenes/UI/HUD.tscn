@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/HUD.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Textures/shield_silver.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Textures/glassPanel_200.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Textures/barHorizontal_green_mid 200.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Healthbar_flash"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:tint_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.05, 0.1, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.568627, 0, 1, 1 ), Color( 0.478431, 0, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 0.592157, 0, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 580.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+margin_right = 30.0
+margin_bottom = 560.0
+texture = ExtResource( 2 )
+
+[node name="HealthBar" type="TextureProgress" parent="MarginContainer/HBoxContainer"]
+margin_left = 34.0
+margin_right = 234.0
+margin_bottom = 560.0
+value = 75.0
+texture_over = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="MarginContainer/HBoxContainer/HealthBar"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/HBoxContainer/HealthBar"]
+anims/Healthbar_flash = SubResource( 1 )
