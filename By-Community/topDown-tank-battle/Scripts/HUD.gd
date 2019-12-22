@@ -5,7 +5,7 @@ var bar_green = preload("res://Assets/Textures/barHorizontal_green_mid 200.png")
 var bar_yellow = preload("res://Assets/Textures/barHorizontal_yellow_mid 200.png")
 var bar_texture
 
-func update_healtbar(value):
+func update_healthbar(value):
 	bar_texture = bar_green
 	if value < 60:
 		bar_texture = bar_yellow

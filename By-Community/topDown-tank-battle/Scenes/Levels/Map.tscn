@@ -48,7 +48,7 @@ rotation = 2.24182
 [node name="Enemy" parent="Paths/Path2D2/PathFollow2D" instance=ExtResource( 4 )]
 
 [node name="HUD" parent="." instance=ExtResource( 5 )]
-[connection signal="health_changed" from="Player" to="HUD" method="update_healtbar"]
+[connection signal="health_changed" from="Player" to="HUD" method="update_healthbar"]
 [connection signal="shoot" from="Player" to="." method="_on_Tank_shoot"]
 [connection signal="shoot" from="Paths/Path2D/PathFollow2D/Enemy" to="." method="_on_Tank_shoot"]
 [connection signal="shoot" from="Paths/Path2D2/PathFollow2D/Enemy" to="." method="_on_Tank_shoot"]
