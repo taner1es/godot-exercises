@@ -11,6 +11,8 @@ extents = Vector2( 41.2356, 38.5874 )
 radius = 392.0
 
 [node name="Enemy" instance=ExtResource( 1 )]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource( 2 )
 speed = 200
 rotation_speed = 1.0
