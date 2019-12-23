@@ -15,3 +15,6 @@ func control(delta):
 		velocity = Vector2(-max_speed/2, 0).rotated(rotation)
 	if Input.is_action_pressed('click'):
 		shoot()
+
+func _on_Explosion_animation_finished():
+	emit_signal("dead")
