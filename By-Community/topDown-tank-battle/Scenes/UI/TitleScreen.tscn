@@ -1,17 +1,18 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Scenes/Terrains/terrain_tiles.tres" type="TileSet" id=1]
-[ext_resource path="res://Scenes/Environment/Obstacle.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Font/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Scenes/Tanks/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/TitleScreen.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Terrains/terrain_tiles.tres" type="TileSet" id=2]
+[ext_resource path="res://Scenes/Environment/Obstacle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Font/Xolonium-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Scenes/Tanks/Enemy.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
-font_data = ExtResource( 3 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 48
-font_data = ExtResource( 3 )
+font_data = ExtResource( 4 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "start"
@@ -61,6 +62,7 @@ _data = {
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ]
 }
@@ -68,311 +70,312 @@ __meta__ = {
 [node name="TileMap" type="TileMap" parent="."]
 modulate = Color( 0.584314, 0.584314, 0.584314, 1 )
 scale = Vector2( 0.5, 0.5 )
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 2 )
 cell_size = Vector2( 128, 128 )
 format = 1
 tile_data = PoolIntArray( 0, 0, 0, 1, 10, 0, 2, 10, 0, 3, 1, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 1, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 1, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 1, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 1, 0, 65545, 0, 0, 65546, 0, 0, 65547, 13, 0, 65548, 16, 0, 65549, 0, 0, 65550, 0, 0, 65551, 10, 0, 131072, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 11, 0, 131076, 2, 0, 131077, 2, 0, 131078, 2, 0, 131079, 2, 0, 131080, 16, 0, 131081, 10, 0, 131082, 10, 0, 131083, 15, 0, 131084, 14, 0, 131085, 0, 0, 131086, 10, 0, 131087, 10, 0, 196608, 0, 0, 196609, 10, 0, 196610, 10, 0, 196611, 1, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 1, 0, 196621, 0, 0, 196622, 10, 0, 196623, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 1, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262156, 1, 0, 262157, 0, 0, 262158, 0, 0, 262159, 0, 0, 327680, 2, 0, 327681, 2, 0, 327682, 2, 0, 327683, 12, 0, 327684, 2, 0, 327685, 2, 0, 327686, 2, 0, 327687, 2, 0, 327688, 2, 0, 327689, 2, 0, 327690, 2, 0, 327691, 2, 0, 327692, 11, 0, 327693, 2, 0, 327694, 2, 0, 327695, 2, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 1, 0, 393220, 0, 0, 393221, 0, 0, 393222, 10, 0, 393223, 10, 0, 393224, 10, 0, 393225, 10, 0, 393226, 10, 0, 393227, 0, 0, 393228, 1, 0, 393229, 0, 0, 393230, 0, 0, 393231, 10, 0, 458752, 10, 0, 458753, 10, 0, 458754, 10, 0, 458755, 1, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 1, 0, 458765, 0, 0, 458766, 0, 0, 458767, 10, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 1, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 10, 0, 524296, 10, 0, 524297, 10, 0, 524298, 0, 0, 524299, 0, 0, 524300, 1, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 589824, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 1, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 1, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0 )
 
 [node name="Environment" type="Node2D" parent="."]
+editor/display_folded = true
 
-[node name="Obstacle" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 157.822, 408.996 )
 rotation = 0.431305
 scale = Vector2( 0.740102, 0.740102 )
 
-[node name="Obstacle2" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle2" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 39.1907, 229.115 )
 rotation = 0.431305
 type = 1
 
-[node name="Obstacle3" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle3" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 100, 230 )
 rotation = 0.431305
 type = 1
 
-[node name="Obstacle4" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle4" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 164.83, 610.996 )
 rotation = 2.34946
 scale = Vector2( 0.7, 0.7 )
 type = 9
 
-[node name="Obstacle5" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle5" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 160, 560 )
 rotation = -0.317361
 scale = Vector2( 0.7, 0.7 )
 type = 9
 
-[node name="Obstacle6" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle6" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 160, 480 )
 rotation = 0.431305
 scale = Vector2( 0.7, 0.7 )
 type = 9
 
-[node name="Obstacle7" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle7" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 879.331, 428.662 )
 rotation = -0.523598
 type = 6
 
-[node name="Obstacle8" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle8" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 883.155, 277.667 )
 rotation = -0.537644
 type = 10
 
-[node name="Obstacle9" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle9" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 739.006, 261.338 )
 rotation = 0.523598
 type = 11
 
-[node name="Obstacle10" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle10" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 728.662, 423.996 )
 rotation = 2.35619
 type = 10
 
-[node name="Obstacle36" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle36" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 748.662, 517.996 )
 rotation = 3.10261
 type = 10
 
-[node name="Obstacle37" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle37" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 744.662, 629.996 )
 rotation = 3.45751
 type = 10
 
-[node name="Obstacle11" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle11" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 606.826, 413.499 )
 rotation = 1.83259
 type = 10
 
-[node name="Obstacle12" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle12" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 450, 410 )
 rotation = 1.57079
 type = 10
 
-[node name="Obstacle13" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle13" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 320, 410 )
 rotation = 1.309
 type = 10
 
-[node name="Obstacle34" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle34" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 275, 491 )
 rotation = 0.0545607
 type = 10
 
-[node name="Obstacle35" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle35" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 283, 608 )
 rotation = -0.151047
 type = 10
 
-[node name="Obstacle14" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle14" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 350.325, 558.126 )
 rotation = 1.55667
 type = 14
 
-[node name="Obstacle15" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle15" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 426.138, 514.971 )
 rotation = 2.82523
 type = 15
 
-[node name="Obstacle46" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle46" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 593.137, 473.971 )
 rotation = 2.04856
 type = 15
 
-[node name="Obstacle47" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle47" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 474.138, 606.971 )
 rotation = 1.41264
 type = 15
 
-[node name="Obstacle48" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle48" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 588.137, 627.971 )
 rotation = 1.41264
 type = 19
 
-[node name="Obstacle49" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle49" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 883.137, 502.971 )
 rotation = -2.06259
 type = 19
 
-[node name="Obstacle50" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle50" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 860.137, 610.971 )
 rotation = 1.66393
 scale = Vector2( 0.725676, 0.725676 )
 type = 19
 
-[node name="Obstacle51" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle51" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 941.137, 622.971 )
 rotation = 2.21919
 scale = Vector2( 1.15118, 1.15118 )
 type = 19
 
-[node name="Obstacle53" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle53" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 992.136, 582.971 )
 rotation = 2.21919
 scale = Vector2( 0.822787, 0.822787 )
 type = 19
 
-[node name="Obstacle54" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle54" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 928.136, 557.971 )
 rotation = 2.21919
 scale = Vector2( 1.00671, 1.00671 )
 type = 19
 
-[node name="Obstacle55" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle55" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 976.136, 533.971 )
 rotation = 2.21919
 scale = Vector2( 1.00671, 1.00671 )
 type = 19
 
-[node name="Obstacle56" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle56" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 941.136, 490.971 )
 rotation = 2.21919
 scale = Vector2( 1.00671, 1.00671 )
 type = 19
 
-[node name="Obstacle52" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle52" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 994.136, 463.971 )
 rotation = 1.41264
 scale = Vector2( 1.28375, 1.28375 )
 type = 19
 
-[node name="Obstacle16" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle16" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 547.438, 547.629 )
 rotation = 1.9201
 type = 14
 
-[node name="Obstacle38" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle38" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 527.438, 430.629 )
 rotation = 2.10253
 type = 8
 
-[node name="Obstacle44" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle44" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 381.438, 426.629 )
 rotation = 2.40223
 type = 8
 
-[node name="Obstacle39" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle39" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 323.439, 468.629 )
 rotation = 1.82633
 type = 8
 
-[node name="Obstacle40" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle40" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 340.438, 639.629 )
 rotation = 1.82633
 type = 8
 
-[node name="Obstacle41" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle41" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 695.438, 657.629 )
 rotation = 1.82633
 type = 8
 
-[node name="Obstacle45" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle45" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 724.438, 576.629 )
 rotation = 2.36493
 type = 8
 
-[node name="Obstacle42" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle42" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 711.438, 483.629 )
 rotation = 1.11546
 type = 8
 
-[node name="Obstacle43" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle43" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 673.438, 435.629 )
 rotation = 1.82633
 type = 8
 
-[node name="Obstacle17" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle17" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 641.912, 546.463 )
 rotation = 1.309
 type = 15
 
-[node name="Obstacle18" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle18" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 303.307, 289.224 )
 rotation = 1.309
 scale = Vector2( 0.723025, 0.723025 )
 type = 9
 
-[node name="Obstacle19" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle19" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 150.83, 520.996 )
 rotation = 2.34946
 scale = Vector2( 0.7, 0.7 )
 type = 9
 
-[node name="Obstacle20" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle20" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 90, 410 )
 rotation = 0.721303
 scale = Vector2( 0.740102, 0.740102 )
 
-[node name="Obstacle21" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle21" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 32.0001, 410 )
 rotation = 1.17952
 scale = Vector2( 0.740102, 0.740102 )
 
-[node name="Obstacle25" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle25" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 32.0001, 410 )
 rotation = 1.17952
 scale = Vector2( 0.740102, 0.740102 )
 
-[node name="Obstacle22" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle22" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 67.216, 497.564 )
 rotation = 1.68419
 scale = Vector2( 0.740102, 0.740102 )
 type = 0
 
-[node name="Obstacle23" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle23" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 50.7208, 553.875 )
 rotation = 1.17952
 scale = Vector2( 0.740102, 0.740102 )
 type = 0
 
-[node name="Obstacle24" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle24" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 100.206, 575.49 )
 rotation = 2.12056
 scale = Vector2( 0.740102, 0.740102 )
 type = 0
 
-[node name="Obstacle26" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle26" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 488.787, 107.884 )
 rotation = 1.87237
 scale = Vector2( 0.740102, 0.740102 )
 type = 4
 
-[node name="Obstacle27" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle27" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 443.346, 106.17 )
 rotation = 1.27693
 scale = Vector2( 0.740102, 0.740102 )
 type = 4
 
-[node name="Obstacle28" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle28" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 397.048, 104.455 )
 rotation = 1.54818
 scale = Vector2( 0.740102, 0.740102 )
 type = 7
 
-[node name="Obstacle29" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle29" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 42.0954, 102.74 )
 rotation = 1.38901
 scale = Vector2( 0.740102, 0.740102 )
 type = 11
 
-[node name="Obstacle30" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle30" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 128.69, 112.171 )
 rotation = 1.60065
 scale = Vector2( 0.740102, 0.740102 )
 type = 11
 
-[node name="Obstacle31" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle31" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 174.988, 55.5847 )
 rotation = 0.0639162
 scale = Vector2( 0.740102, 0.740102 )
 type = 11
 
-[node name="Obstacle32" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle32" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 112.4, 55.5847 )
 rotation = 1.05128
 scale = Vector2( 0.740102, 0.740102 )
 type = 12
 
-[node name="Obstacle33" parent="Environment" instance=ExtResource( 2 )]
+[node name="Obstacle33" parent="Environment" instance=ExtResource( 3 )]
 position = Vector2( 43.8101, 47.8683 )
 rotation = 0.576346
 scale = Vector2( 0.740102, 0.740102 )
@@ -420,6 +423,8 @@ curve = SubResource( 4 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2( -200, 160 )
+rotation = -0.0331452
 
-[node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource( 4 )]
+[node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource( 5 )]
 scale = Vector2( 0.5, 0.5 )
+max_speed = 100
