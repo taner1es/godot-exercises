@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Map.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Maps/Terrain.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Tanks/GunTurret.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Environment/Obstacle.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Pickups/Pickup.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -90,6 +91,20 @@ type = 16
 position = Vector2( 900.964, 958.667 )
 rotation = 1.89958
 type = 16
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Pickup" parent="Items" instance=ExtResource( 8 )]
+position = Vector2( 2661.92, 1533.06 )
+
+[node name="Pickup2" parent="Items" instance=ExtResource( 8 )]
+position = Vector2( 3049.37, 1090.6 )
+
+[node name="Pickup3" parent="Items" instance=ExtResource( 8 )]
+position = Vector2( 1738.74, 1088.21 )
+
+[node name="Pickup4" parent="Items" instance=ExtResource( 8 )]
+position = Vector2( 3774.05, 1848.76 )
 [connection signal="dead" from="Player" to="." method="_on_Player_dead"]
 [connection signal="health_changed" from="Player" to="HUD" method="update_healthbar"]
 [connection signal="shoot" from="Player" to="." method="_on_Tank_shoot"]
