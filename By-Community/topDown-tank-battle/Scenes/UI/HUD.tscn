@@ -1,25 +1,26 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Textures/shield_silver.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Textures/glassPanel_200.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Textures/barHorizontal_green_mid 200.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Textures/grey_circle.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Healthbar_flash"
 length = 0.2
 step = 0.01
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:tint_progress")
+tracks/0/path = NodePath("MarginContainer/HBoxContainer/HealthBar:tint_progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.05, 0.1, 0.15, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.568627, 0, 1, 1 ), Color( 0.478431, 0, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 0.592157, 0, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.490196, 0.207843, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 0.490196, 0.207843, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [node name="HUD" type="CanvasLayer"]
@@ -54,5 +55,13 @@ texture_progress = ExtResource( 4 )
 
 [node name="Tween" type="Tween" parent="MarginContainer/HBoxContainer/HealthBar"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/HBoxContainer/HealthBar"]
+[node name="AmmoGauge" type="TextureProgress" parent="MarginContainer/HBoxContainer"]
+margin_left = 238.0
+margin_right = 286.0
+margin_bottom = 560.0
+value = 85.0
+texture_progress = ExtResource( 5 )
+fill_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Healthbar_flash = SubResource( 1 )
