@@ -23,7 +23,7 @@ texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 308, 262, 80, 84 )
 
-[node name="Turret" parent="." index="1"]
+[node name="Turret" parent="." index="2"]
 texture = ExtResource( 4 )
 offset = Vector2( 20, 0 )
 region_enabled = true
@@ -39,7 +39,7 @@ texture = ExtResource( 4 )
 offset = Vector2( 25, 0 )
 region_rect = Rect2( 584, 58, 56, 32 )
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="3"]
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
@@ -47,5 +47,5 @@ current = true
 zoom = Vector2( 1.4, 1.4 )
 smoothing_enabled = true
 
-[node name="Explosion" parent="." index="6"]
+[node name="Explosion" parent="." index="7"]
 scale = Vector2( 1.5, 1.5 )

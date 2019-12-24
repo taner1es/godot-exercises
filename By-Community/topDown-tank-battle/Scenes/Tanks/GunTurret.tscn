@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/Bullets/GunTurretBullet.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Textures/onlyObjects_retina_rotated.png" type="Texture" id=4]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 26.374, 27.3415 )
 
 [node name="GunTurret" instance=ExtResource( 1 )]
@@ -38,7 +38,7 @@ offset = Vector2( 24.05, 0 )
 region_rect = Rect2( 644, 94, 50, 40 )
 
 [node name="CollisionShape2D" parent="." index="2"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="DetectRadius" type="Area2D" parent="." index="6"]
 collision_layer = 4

@@ -35,6 +35,12 @@ region_rect = Rect2( 452, 34, 60, 24 )
 [node name="Muzzle" parent="Turret" index="0"]
 position = Vector2( 70, 0 )
 
+[node name="Flash" parent="Turret" index="1"]
+position = Vector2( 50.11, 0 )
+texture = ExtResource( 4 )
+offset = Vector2( 28.82, 0 )
+region_rect = Rect2( 584, 58, 56, 32 )
+
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource( 1 )
 

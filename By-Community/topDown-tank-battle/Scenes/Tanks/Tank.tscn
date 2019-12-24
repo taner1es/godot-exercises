@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Tank.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Effects/Explosion.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Effects/Smoke.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Effects/Explosion.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "init"
@@ -51,8 +52,13 @@ tracks/1/keys = {
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 1 )
+offroad_friction = 0.75
 
 [node name="Body" type="Sprite" parent="."]
+
+[node name="Smoke" parent="." instance=ExtResource( 2 )]
+position = Vector2( -35.193, 2.053 )
+rotation = -3.14159
 
 [node name="Turret" type="Sprite" parent="."]
 
@@ -70,7 +76,7 @@ autoplay = "init"
 anims/init = SubResource( 1 )
 anims/muzzle_flash = SubResource( 2 )
 
-[node name="Explosion" parent="." instance=ExtResource( 2 )]
+[node name="Explosion" parent="." instance=ExtResource( 3 )]
 visible = false
 animation = "fire"
 [connection signal="timeout" from="GunTimer" to="." method="_on_GunTimer_timeout"]
