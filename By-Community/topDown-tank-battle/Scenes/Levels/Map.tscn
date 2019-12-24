@@ -37,6 +37,8 @@ position = Vector2( 2913.83, 593.301 )
 rotation = 2.27267
 
 [node name="Enemy" parent="Paths/Path2D/PathFollow2D" instance=ExtResource( 4 )]
+gun_shots = 3
+gun_spread = 0.7
 detect_radius = 500
 
 [node name="Path2D2" type="Path2D" parent="Paths"]
