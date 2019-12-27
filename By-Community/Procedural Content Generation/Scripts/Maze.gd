@@ -103,3 +103,4 @@ func erase_walls():
 			else:
 				Map.set_cellv(cell+neighbor/2, 10)
 		yield(get_tree(), 'idle_frame')
+		
