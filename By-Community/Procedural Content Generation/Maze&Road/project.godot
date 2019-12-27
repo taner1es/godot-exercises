@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Procedural Content Generation"
+config/name="Procedural Content Generation - Maze and Road"
 
 [rendering]
 
