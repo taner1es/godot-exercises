@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/TestScene.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/TerrainLine.tscn" type="PackedScene" id=2]
+
+[node name="TestScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0.529412, 1, 1 )
+
+[node name="TerrainLine" parent="." instance=ExtResource( 2 )]
+
+[node name="TerrainLine2" parent="." instance=ExtResource( 2 )]
+height = 350
+
+[node name="TerrainLine3" parent="." instance=ExtResource( 2 )]
+height = 450
